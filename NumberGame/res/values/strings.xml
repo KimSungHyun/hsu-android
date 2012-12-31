@@ -4,5 +4,8 @@
     <string name="app_name">NumberGame</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="strTitle">1 to 30</string>
+    <string name="strStart">Start</string>
+    <string name="strRank">Rank</string>
 
 </resources>
