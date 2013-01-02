@@ -2,6 +2,7 @@ package com.example.numbergame;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.widget.Button;
 import android.view.Window;
@@ -39,9 +40,12 @@ public class MainActivity extends Activity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			if(v.getId() == R.id.btnStart){
-//				Intent 
+				Intent I1 = new Intent(MainActivity.this, GameActivity.class);
+				startActivity(I1);
 			}
-			
+			else if(v.getId() == R.id.btnRank){
+//				startActivity(new Intent(MainActivity.this, RankA))
+			}
 		}
     }
     
