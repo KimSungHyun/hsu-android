@@ -31,7 +31,7 @@ public class Main extends Activity {
 
 	public void onbtnRankClick(View v) {
 		if (v.getId() == R.id.btnStart) {
-			Intent intent = new Intent(Main.this, Rank.class);
+			Intent intent = new Intent(Main.this, RankList.class);
 			startActivity(intent);
 		}
 	}

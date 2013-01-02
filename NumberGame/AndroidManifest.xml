@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name="Game"></activity>
-        <activity android:name="Rank"></activity>
+        <activity android:name="com.example.numbergame.RankList"></activity>
     </application>
 
 </manifest>

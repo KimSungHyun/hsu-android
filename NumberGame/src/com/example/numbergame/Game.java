@@ -12,10 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Game extends Activity {
 
-	final static int maxNum = 30;
+	final static int MAXNUM = 12;
 	int currentNumber = 1;
 	int nextNumber = 10;
 	int buttonId[] = { R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5,
@@ -25,9 +26,11 @@ public class Game extends Activity {
 	Timer timer = new Timer();
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss:SSS");
 	long time = 0;
-	
+
 	TextView tvTime;
 	TextView tvNumber;
+
+	DBManager rank;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class Game extends Activity {
 
 		tvTime = (TextView) findViewById(R.id.tvTime);
 		tvNumber = (TextView) findViewById(R.id.tvNumber);
+		rank = new DBManager(this);
 
 		for (int i = 0; i < buttonId.length; i++) {
 			Log.i("check", Integer.toString(i));
@@ -68,15 +72,35 @@ public class Game extends Activity {
 		Collections.shuffle(numberList);
 		for (int i = 0; i < numberList.size(); i++) {
 			buttonView[i].setText(numberList.get(i));
-		} 
+		}
 	}
 
 	public void onNumberButton(View v) {
 		Log.i("onNumberButton", Integer.toString(v.getId()));
-		Button tempButton = (Button)findViewById(v.getId());
-		tempButton.setText(Integer.toString(nextNumber));
-		nextNumber++;
-		tvNumber.setText(Integer.toString(nextNumber));
-		currentNumber++;
+		Button tempButton = (Button) findViewById(v.getId());
+		if (tempButton.getText().toString()
+				.equals(Integer.toString(currentNumber))) {
+
+			if (currentNumber == MAXNUM) {
+				timer.cancel();
+				Toast.makeText(Game.this, "½Â¸®", Toast.LENGTH_SHORT).show();
+
+				rank.add("¤¾¤¾¤¾", time);
+			}
+
+			if (nextNumber <= MAXNUM) {
+				tempButton.setText(Integer.toString(nextNumber));
+				nextNumber++;
+				if (nextNumber > MAXNUM)
+					tvNumber.setText("³¡");
+				else
+					tvNumber.setText(Integer.toString(nextNumber));
+			} else {
+				tempButton.setText("");
+				tempButton.setEnabled(false);
+			}
+			currentNumber++;
+
+		}
 	}
 }

@@ -25,7 +25,8 @@ public final class R {
         public static final int btn9=0x7f07000d;
         public static final int btnRank=0x7f070010;
         public static final int btnStart=0x7f07000f;
-        public static final int menu_settings=0x7f070011;
+        public static final int list=0x7f070011;
+        public static final int menu_settings=0x7f070012;
         public static final int tableRow1=0x7f070002;
         public static final int tableRow2=0x7f070006;
         public static final int tableRow3=0x7f07000a;
