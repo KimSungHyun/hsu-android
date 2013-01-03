@@ -30,7 +30,7 @@ public class Main extends Activity {
 	}
 
 	public void onbtnRankClick(View v) {
-		if (v.getId() == R.id.btnStart) {
+		if (v.getId() == R.id.btnRank) {
 			Intent intent = new Intent(Main.this, RankList.class);
 			startActivity(intent);
 		}

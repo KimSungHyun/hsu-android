@@ -26,6 +26,7 @@ public class DBManager {
 	public DBManager(Context context) {
 		db = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE,
 				null);
+
 		db.execSQL(CREATE_TABLE_SQL);
 		loadData();
 	}
@@ -36,9 +37,10 @@ public class DBManager {
 
 	private void loadData() {
 		vector.removeAllElements();
-		Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null,
-				FIELD_ID);
-		// Cursor cursor = db.rawQuery("SELECT * FROM person", null);
+		 Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null,
+		 FIELD_ID);
+//		Cursor cursor = db.rawQuery("SELECT * FROM Rank", null);
+
 		while (cursor.moveToNext()) {
 			Rank rank = new Rank(cursor);
 			vector.add(rank);
@@ -74,6 +76,18 @@ public class DBManager {
 			id = cursor.getInt(cursor.getColumnIndex("Id"));
 			name = cursor.getString(cursor.getColumnIndex("UserName"));
 			endTime = cursor.getInt(cursor.getColumnIndex("EndTime"));
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public long getTime() {
+			return endTime;
 		}
 	}
 }

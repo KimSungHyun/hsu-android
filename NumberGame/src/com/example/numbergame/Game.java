@@ -7,6 +7,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Game extends Activity {
+public class Game extends Activity implements OnDismissListener {
 
 	final static int MAXNUM = 12;
 	int currentNumber = 1;
@@ -85,7 +87,9 @@ public class Game extends Activity {
 				timer.cancel();
 				Toast.makeText(Game.this, "½Â¸®", Toast.LENGTH_SHORT).show();
 
-				rank.add("¤¾¤¾¤¾", time);
+				InputDialog dialog = new InputDialog(this);
+				dialog.setOnDismissListener(this);
+				dialog.show();
 			}
 
 			if (nextNumber <= MAXNUM) {
@@ -102,5 +106,13 @@ public class Game extends Activity {
 			currentNumber++;
 
 		}
+	}
+
+	public void onDismiss(DialogInterface $dialog) {
+		InputDialog dialog = (InputDialog) $dialog;
+		String name = dialog.getReturnValue();
+		
+		Toast.makeText(Game.this, name, Toast.LENGTH_SHORT).show();
+		rank.add(name, time);
 	}
 }
